@@ -21,6 +21,7 @@ def request():
                 print(matrix[row][column], end=" ")
             print()
             
+        print(len(matrix))
         return matrix
 
 request()
