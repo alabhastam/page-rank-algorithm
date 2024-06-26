@@ -25,20 +25,12 @@ def request():
         return matrix
     
 
-def pagerank(matrix, num_iterations=100):
+def pagerank(matrix, num_iterations=20):
     
-    len(matrix)  #dar inja tedad kolle page ha mishe
+    len(matrix)  #len(matrix) = page counts
     r = [1 / len(matrix)] * len(matrix)  #PageRank vector with equal values
 
-    #make columns sum to 1
-    for j in range(len(matrix)):
-        col_sum = sum(matrix[i][j] for i in range(len(matrix)))
-        if col_sum != 0:
-            for i in range(len(matrix)):
-                matrix[i][j] /= col_sum
-        else:
-            for i in range(len(matrix)):
-                matrix[i][j] = 1.0 / len(matrix)
+    
 
     #PageRank calculation
     for _ in range(num_iterations):
@@ -56,4 +48,4 @@ if __name__ == "__main__":
     
     request()
     ranks = pagerank(matrix)
-    print("PageRank vector:", ranks)
+    print("values are : ", ranks)
