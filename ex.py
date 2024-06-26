@@ -27,7 +27,7 @@ def request():
 
 def pagerank(matrix, num_iterations=100):
     
-    len(matrix)  
+    len(matrix)  #dar inja tedad kolle page ha mishe
     r = [1 / len(matrix)] * len(matrix)  #PageRank vector with equal values
 
     #make columns sum to 1
