@@ -1,4 +1,5 @@
 matrix = []
+num_iterations=20
 
 def request():
     Row = int(input("Enter the number of rows:"))
@@ -25,21 +26,49 @@ def request():
         return matrix
     
 
-def pagerank(matrix, num_iterations=20):
+def pagerank(matrix ):
     
-    len(matrix)  #len(matrix) = page counts
-    r = [1 / len(matrix)] * len(matrix)  #PageRank vector with equal values
+    try:
+        
+        if len(matrix)==0 :
+            raise ValueError("The matrix should not be empty.")
 
+        r = [1 / len(matrix)] * len(matrix)  #PageRank vector with equal values
+
+        
+        #PageRank calculation
+        for _ in range(num_iterations):
+            new_r = [0] * len(matrix)
+            for i in range(len(matrix)):
+                new_r[i] = sum(matrix[i][j] * r[j] for j in range(len(matrix)))
+            r = new_r
+
+        return r
+    except ZeroDivisionError:
+        print("Error: Division by zero encountered. The matrix might be empty or have an invalid structure.")
+
+
+# I wrote this array just for ssorting and making code beutiful
+def find_extremes(arr):
     
+    # Sort the array to find the extremes easily
+    sorted_arr = sorted(arr)
+    
+    # Find the smallest and largest elements
+    smallest = sorted_arr[0]
+    largest = sorted_arr[-1]
+    
+    # Find the second and third largest elements
+    second_largest = sorted_arr[-2]
+    third_largest = sorted_arr[-3]
+    
+    print("Smallest element:", smallest)
+    print("Largest element:", largest)
+    print("Second largest element:", second_largest)
+    print("Third largest element:", third_largest)
+    
+    return smallest, largest, second_largest, third_largest
 
-    #PageRank calculation
-    for _ in range(num_iterations):
-        new_r = [0] * len(matrix)
-        for i in range(len(matrix)):
-            new_r[i] = sum(matrix[i][j] * r[j] for j in range(len(matrix)))
-        r = new_r
-
-    return r
 
 
  
@@ -47,5 +76,6 @@ if __name__ == "__main__":
     
     
     request()
-    ranks = pagerank(matrix)
-    print("values are : ", ranks)
+    pages = pagerank(matrix)
+    print("rank of your pages are:", pages)
+    find_extremes(pages)
