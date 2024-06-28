@@ -1,5 +1,6 @@
 matrix = []
-num_iterations=20
+num_iterations=5
+
 
 def request():
     Row = int(input("Enter the number of rows:"))
@@ -28,6 +29,8 @@ def request():
 
 def pagerank(matrix ):
     
+    show_step = 0 #add this for showing level of axswer in termianl in a better way
+    
     try:
         
         if len(matrix)==0 :
@@ -36,14 +39,19 @@ def pagerank(matrix ):
         r = [1 / len(matrix)] * len(matrix)  #PageRank vector with equal values
 
         
-        #PageRank calculation
+        #main functionality
         for _ in range(num_iterations):
             new_r = [0] * len(matrix)
             for i in range(len(matrix)):
                 new_r[i] = sum(matrix[i][j] * r[j] for j in range(len(matrix)))
             r = new_r
-
+            show_step += 1
+            print("answer of matrix in step ", show_step, "is:", r)
+            
+            
         return r
+    
+    #why I add this? if row != column we get a error for zero division 
     except ZeroDivisionError:
         print("Error: Division by zero encountered. The matrix might be empty or have an invalid structure.")
 
