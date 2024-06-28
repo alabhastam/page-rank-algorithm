@@ -26,27 +26,39 @@ def request():
         
         return matrix
     
+# preventing from getting high numbers maybe sometimes later I add some logic when 
+# nesbat was same in level stop doing things 
+
+def normalize(arr):
+    total_sum = sum(arr)
+    if total_sum == 0:
+        return [0] * len(arr)  # Handle the case where the sum is zero
+    normalized_arr = [x / total_sum for x in arr]
+    return normalized_arr
+
+
 
 def pagerank(matrix ):
     
-    show_step = 0 #add this for showing level of axswer in termianl in a better way
+    show_step = 0 #add this for showing level of answer in termianl in a better way
     
     try:
         
         if len(matrix)==0 :
-            raise ValueError("The matrix should not be empty.")
+            raise ValueError(" matrix should not be empty.")
 
         r = [1 / len(matrix)] * len(matrix)  #PageRank vector with equal values
 
         
         #main functionality
-        for _ in range(num_iterations):
+        for any in range(num_iterations):
             new_r = [0] * len(matrix)
             for i in range(len(matrix)):
                 new_r[i] = sum(matrix[i][j] * r[j] for j in range(len(matrix)))
             r = new_r
             show_step += 1
             print("answer of matrix in step ", show_step, "is:", r)
+            print("normilzed of this step is : ", normalize(r))
             
             
         return r
