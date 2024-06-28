@@ -79,3 +79,7 @@ if __name__ == "__main__":
     pages = pagerank(matrix)
     print("rank of your pages are:", pages)
     find_extremes(pages)
+    
+    
+    
+#next time you came back think you need to normilize your numbers
