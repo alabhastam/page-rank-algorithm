@@ -110,7 +110,7 @@ if __name__ == "__main__":
     print("0-If you want to exit.") 
     
     while(True):
-        user_input = input("What can I do for you? write 1,2,3 or 0 ")
+        user_input = int(input("What can I do for you? write 1,2,3 or 0 "))
 
         if (user_input == 1):
             request()
@@ -131,6 +131,7 @@ if __name__ == "__main__":
             print("final normalized",normalize(pages))
         
         elif(user_input == 0):
+            print("See you later :D")
             break
         
         else:
