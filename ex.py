@@ -1,5 +1,5 @@
 matrix = []
-num_iterations=5
+iterations=int(input("how many times you want to itrate"))
 
 
 def request():
@@ -16,6 +16,7 @@ def request():
             #A for loop for column entries
             for column in range(Column): 
                 a.append(int(input()))
+                print("in this row , your matrix right now is : ", a)
             matrix.append(a)
 
         # For printing the matrix
@@ -47,18 +48,21 @@ def pagerank(matrix ):
         if len(matrix)==0 :
             raise ValueError(" matrix should not be empty.")
 
-        r = [1 / len(matrix)] * len(matrix)  #PageRank vector with equal values
+        r = [1 / len(matrix)] * len(matrix)  # equal value
 
         
         #main functionality
-        for any in range(num_iterations):
+        for page in range(iterations):
             new_r = [0] * len(matrix)
-            for i in range(len(matrix)):
-                new_r[i] = sum(matrix[i][j] * r[j] for j in range(len(matrix)))
+            for n in range(len(matrix)):
+                total = 0
+                for m in range(len(matrix)):
+                    total += matrix[n][m] * r[m]
+                new_r[n] = total
             r = new_r
             show_step += 1
             print("answer of matrix in step ", show_step, "is:", r)
-            print("normilzed of this step is : ", normalize(r))
+            print("normalized of this step is : ", normalize(r))
             
             
         return r
@@ -98,7 +102,12 @@ if __name__ == "__main__":
     request()
     pages = pagerank(matrix)
     print("rank of your pages are:", pages)
-    find_extremes(pages)
+    print("final normalized",normalize(pages))
+    if len(pages)>=3:
+        find_extremes(pages)
+    else:
+        print("I cant reportage about statics . I only report when you have more than tree pages")
+
     
     
     
