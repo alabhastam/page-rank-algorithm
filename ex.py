@@ -1,5 +1,9 @@
 matrix = []
-iterations=int(input("how many times you want to itrate"))
+iterations= 7
+DEF_MATRIX = [[0, 0, 1, 0],
+            [1, 0, 0, 1],
+            [0, 1, 0, 0],
+            [0, 0, 1, 0]]
 
 
 def request():
@@ -98,17 +102,51 @@ def find_extremes(arr):
  
 if __name__ == "__main__":
     
+    print("Hi! This is my pagerank project for data science lesson with Pr.Mohammad Saba ")
+    print("This peace of code have diffrent function . You can choose what you want in terminal.")
+    print("1-If you want to input your matrix , write 1. After that I will calculate your pagerank.")
+    print("2-If you want to see statics (first and second ) , write 2.")
+    print("3-If you want to use defualt matrix , write 3.")
+    print("0-If you want to exit.") 
     
-    request()
-    pages = pagerank(matrix)
-    print("rank of your pages are:", pages)
-    print("final normalized",normalize(pages))
-    if len(pages)>=3:
-        find_extremes(pages)
-    else:
-        print("I cant reportage about statics . I only report when you have more than tree pages")
+    while(True):
+        user_input = input("What can I do for you? write 1,2,3 or 0 ")
 
+        if (user_input == 1):
+            request()
+            pages = pagerank(matrix)
+            print("rank of your pages are:", pages)
+            print("final normalized",normalize(pages))
+
+        elif(user_input == 2):
+            pages = pagerank(matrix)
+            if len(pages)>=3:
+                find_extremes(pages)
+            else:
+                print("I cant reportage about statics . I only report when you have more than tree pages")
+
+        elif(user_input == 3):
+            pages = pagerank(DEF_MATRIX)
+            print("rank of your pages are:", pages)
+            print("final normalized",normalize(pages))
+        
+        elif(user_input == 0):
+            break
+        
+        else:
+            print("Invalid command . yechiz dige bezan!")
+        
+    
+    
+#    request()
+#    pages = pagerank(matrix)
+#    print("rank of your pages are:", pages)
+#    print("final normalized",normalize(pages))
+#    if len(pages)>=3:
+#        find_extremes(pages)
+#    else:
+#        print("I cant reportage about statics . I only report when you have more than tree pages")
+#        # only 2 pages ?? so one of them is better :D
     
     
     
-#next time you came back think you need to normilize your numbers
