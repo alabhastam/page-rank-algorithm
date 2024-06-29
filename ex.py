@@ -4,6 +4,8 @@ DEF_MATRIX = [[0, 0, 1, 0],
             [1, 0, 0, 1],
             [0, 1, 0, 0],
             [0, 0, 1, 0]]
+#این دقیقا همون ماتریسی هست که سرکلاس مثالش زده شد
+DEFAULT_MATRIX_ANS = [0.2, 0.4, 0.2, 0.2]
 
 
 def request():
@@ -119,12 +121,18 @@ if __name__ == "__main__":
             print("final normalized",normalize(pages))
 
         elif(user_input == 2):
-            pages = pagerank(matrix)
-            if len(pages)>=3:
-                find_extremes(pages)
-            else:
-                print("I cant reportage about statics . I only report when you have more than tree pages")
-
+            #if matrix was not empty
+            if matrix:
+                pages = pagerank(matrix)
+                if len(pages)>=3:
+                    find_extremes(pages)
+                else:
+                    print("I cant reportage about statics . I only report when you have more than tree pages")
+            else : 
+                print("you probably want to see statics aboy defualt matrix.Because matrix is empty")
+                find_extremes(DEFAULT_MATRIX_ANS)
+                
+                
         elif(user_input == 3):
             pages = pagerank(DEF_MATRIX)
             print("rank of your pages are:", pages)
